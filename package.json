@@ -44,7 +44,7 @@
     "vite": "^2.8.0"
   },
   "husky": {
-    "precommit": "lint-staged"
+    "pre-commit": "lint-staged"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
