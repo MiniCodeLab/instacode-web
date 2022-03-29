@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../context/auth.context';
+import { useContext } from "react";
+import { AuthContext } from "../context/auth.context";
 
 const Authenticate = () => {
-  const { register } = useContext(AuthContext);
+  const {register} = useContext(AuthContext);
 
   const handleRegister = () => {
     // TODO: Handle form submit
 
     register({
-      email: 'minicodelab+1@minicodelab.com',
+      email: 'minicodelab+2@minicodelab.com',
       emoji: '💃',
       password: '1234asdF.',
-      username: 'MiniCodeLab-1',
+      username: 'MiniCodeLab-2'
     });
-  };
+  }
 
   return (
     <div>

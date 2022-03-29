@@ -23,10 +23,27 @@
 
 ## Próximo día:
 
-- [] Config de Prettier
-- [] Config de Eslint
+- [x] Config de Prettier
+- [-] Config de Eslint
+  - npx eslint --init
+  - npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
+- [x] Config de Jest
 - [] Config de Husky
-- [] Config de Jest
+
+  - npm i -D husky lint-staged
+
+  ```
+  "husky": {
+      "precommit": "lint-staged"
+    },
+  "lint-staged": {
+    "\*.{js,jsx,ts,tsx}": [
+      "prettier --write",
+      "eslint --quiet --fix",
+      "jest --passWithNoTests"
+    ]
+  }
+  ```
 
 - [] Refactor del registro
 
