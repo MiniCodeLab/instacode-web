@@ -1,4 +1,4 @@
-import { sayHello} from './common';
+import { sayHello } from './common';
 
 describe('Test example', () => {
   it('true should be true', () => {

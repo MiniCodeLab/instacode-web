@@ -1,8 +1,8 @@
-import {useContext} from "react";
-import { AuthContext} from "../context/auth.context";
+import { useContext } from 'react';
+import { AuthContext } from '../context/auth.context';
 
 const Authenticate = () => {
-  const {register} = useContext(AuthContext);
+  const { register } = useContext(AuthContext);
 
   const handleRegister = () => {
     // TODO: Handle form submit
@@ -13,7 +13,7 @@ const Authenticate = () => {
       password: '1234asdF.',
       username: 'MiniCodeLab-2'
     });
-  }
+  };
 
   return (
     <div>
