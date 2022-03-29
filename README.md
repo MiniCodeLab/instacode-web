@@ -24,12 +24,11 @@
 ## Próximo día:
 
 - [x] Config de Prettier
-- [-] Config de Eslint
+- [X] Config de Eslint
   - npx eslint --init
   - npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
 - [x] Config de Jest
-- [] Config de Husky
-
+- [X] Config de Husky
   - npm i -D husky lint-staged
 
   ```
@@ -47,11 +46,14 @@
 
 - [] Refactor del registro
 
-  - [] Crear hook de autenticación
-  - [] Crear servicio API
-  - [] Guardar datos del user en Context
+  - [-] Crear hook de autenticación
+  - [X] Crear servicio API
+  - [X] Guardar datos del user en Context
+  - [X] Guardar token en localstorage
+  - [] Crear función getUserInfo que traiga la informacion del user logeado
 
 - [] Añadir forms y pantalla de Registro y login
   - [] Registro
   - [] Login
+  - [] Añadir ruta /codes protegida 
 
