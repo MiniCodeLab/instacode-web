@@ -44,16 +44,36 @@
   }
   ```
 
-- [] Refactor del registro
+- [X] Refactor del registro
 
   - [-] Crear hook de autenticación
   - [X] Crear servicio API
   - [X] Guardar datos del user en Context
   - [X] Guardar token en localstorage
-  - [] Crear función getUserInfo que traiga la informacion del user logeado
 
-- [] Añadir forms y pantalla de Registro y login
-  - [] Registro
-  - [] Login
-  - [] Añadir ruta /codes protegida 
+---
 
+- [X] Crear componentes para el formulario
+  - Input
+  - Select
+  - Form
+  - Botón
+  - AuthenticateLayout
+
+- [X] Añadir forms y pantalla de Registro y login
+  - [X] Registro
+  - [X] Login
+  - [X] Añadir redireccion a la ruta /styleguide 
+
+---
+
+- [] Refactor Formularios
+  - [] Componetizar los inputs de forma más genérica
+  - [] HOC para que los users logeados no entren en Authenticate
+  - [] Controlar los errores generales del form
+  
+- [] Cargar datos de usuario al cargar la aplicación
+- [] Crear las vistas de las rutas protegidas
+- [] Crear componente lista de codes
+  - [] Crear componente Code Snippet
+  - [] Añadir paginación **BONUS**

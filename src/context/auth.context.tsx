@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useState } from 'react';
-import { HTTPStatusCodes, ResponsePayload } from '../types/request.types';
-import { User, UserData } from '../types/user.types';
-import { LoginParams, register, login, RegisterParams } from '../api/auth.api';
+import { login, LoginParams, register, RegisterParams } from '../api/auth.api';
+import { ErrorPayload, HTTPStatusCodes, ResponsePayload } from '../types/request.types';
+import { UserData } from '../types/user.types';
 import { getTokenFromLocalStorage, setTokenToLocalStorage } from '../utils/common';
 
 export type AuthContextState = UserData & {
@@ -9,8 +9,8 @@ export type AuthContextState = UserData & {
 };
 
 export type AuthContextType = {
-  register: (params: RegisterParams) => Promise<unknown>;
-  login: (params: LoginParams) => Promise<unknown>;
+  register: (params: RegisterParams) => Promise<void | ErrorPayload>;
+  login: (params: LoginParams) => Promise<void | ErrorPayload>;
 } & AuthContextState;
 
 const initialState = {
@@ -31,18 +31,17 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     return { ...initialState, token: storedToken };
   });
 
-  const handleRegister = async (params: RegisterParams) => {
+  const handleRegister = async (params: RegisterParams): Promise<void | ErrorPayload> => {
     const result = await register(params);
 
     if (result.status === HTTPStatusCodes.CREATED) {
-      setAuth((prevAuth) => ({
-        ...prevAuth,
-        user: (result as ResponsePayload<User>).data
-      }));
+      return;
     }
+
+    return result as ErrorPayload;
   };
 
-  const handleLogin = async (params: LoginParams) => {
+  const handleLogin = async (params: LoginParams): Promise<void | ErrorPayload> => {
     const result = await login(params);
 
     if (result.status === HTTPStatusCodes.OK) {
@@ -56,6 +55,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
         user
       }));
     }
+
+    return result as ErrorPayload;
   };
 
   return (
