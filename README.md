@@ -24,11 +24,12 @@
 ## Próximo día:
 
 - [x] Config de Prettier
-- [X] Config de Eslint
+- [x] Config de Eslint
   - npx eslint --init
   - npm install --save-dev prettier eslint-config-prettier eslint-plugin-prettier
 - [x] Config de Jest
-- [X] Config de Husky
+- [x] Config de Husky
+
   - npm i -D husky lint-staged
 
   ```
@@ -44,26 +45,27 @@
   }
   ```
 
-- [X] Refactor del registro
+- [x] Refactor del registro
 
   - [-] Crear hook de autenticación
-  - [X] Crear servicio API
-  - [X] Guardar datos del user en Context
-  - [X] Guardar token en localstorage
+  - [x] Crear servicio API
+  - [x] Guardar datos del user en Context
+  - [x] Guardar token en localstorage
 
 ---
 
-- [X] Crear componentes para el formulario
+- [x] Crear componentes para el formulario
+
   - Input
   - Select
   - Form
   - Botón
   - AuthenticateLayout
 
-- [X] Añadir forms y pantalla de Registro y login
-  - [X] Registro
-  - [X] Login
-  - [X] Añadir redireccion a la ruta /styleguide 
+- [x] Añadir forms y pantalla de Registro y login
+  - [x] Registro
+  - [x] Login
+  - [x] Añadir redireccion a la ruta /styleguide
 
 ---
 
@@ -71,9 +73,20 @@
   - [] Componetizar los inputs de forma más genérica
   - [] HOC para que los users logeados no entren en Authenticate
   - [] Controlar los errores generales del form
-  
-- [] Cargar datos de usuario al cargar la aplicación
-- [] Crear las vistas de las rutas protegidas
-- [] Crear componente lista de codes
-  - [] Crear componente Code Snippet
+- [x] Propagar email de registro a login
+- [x] Cargar datos de usuario al cargar la aplicación
+- [x] Crear las vistas de las rutas protegidas
+- [x] Crear componente lista de codes
+  - [x] Crear componente Code Snippet
+
+---
+
+- Snippets:
+  - [] Conectarse con la API para traer snippets
   - [] Añadir paginación **BONUS**
+  - [] Formulario para crear snippets
+  - [] Filtro por tags
+  - [] Cargar los tags desde la API
+
+---
+

@@ -1,7 +1,7 @@
-import { createContext, ReactNode, useState } from 'react';
-import { login, LoginParams, register, RegisterParams } from '../api/auth.api';
+import { createContext, ReactNode, useEffect, useState } from 'react';
+import { getUserData, login, LoginParams, register, RegisterParams } from '../api/auth.api';
 import { ErrorPayload, HTTPStatusCodes, ResponsePayload } from '../types/request.types';
-import { UserData } from '../types/user.types';
+import { User, UserData } from '../types/user.types';
 import { getTokenFromLocalStorage, setTokenToLocalStorage } from '../utils/common';
 
 export type AuthContextState = UserData & {
@@ -9,6 +9,7 @@ export type AuthContextState = UserData & {
 };
 
 export type AuthContextType = {
+  loading: boolean;
   register: (params: RegisterParams) => Promise<void | ErrorPayload>;
   login: (params: LoginParams) => Promise<void | ErrorPayload>;
 } & AuthContextState;
@@ -21,6 +22,7 @@ const initialState = {
 
 export const AuthContext = createContext<AuthContextType>({
   ...initialState,
+  loading: false,
   register: async () => {},
   login: async () => {}
 });
@@ -28,8 +30,37 @@ export const AuthContext = createContext<AuthContextType>({
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const [auth, setAuth] = useState<AuthContextState>(() => {
     const storedToken = getTokenFromLocalStorage();
-    return { ...initialState, token: storedToken };
+    return { ...initialState, token: storedToken || null };
   });
+  const [loading, setLoading] = useState(() => !!auth.token);
+
+  useEffect(() => {
+    async function getUser() {
+      const result = await getUserData(auth.token as string);
+
+      if (result.status === HTTPStatusCodes.OK) {
+        setAuth({
+          ...auth,
+          authenticated: true,
+          user: (result as ResponsePayload<User>).data
+        });
+      } else {
+        setTokenToLocalStorage('');
+        setAuth({
+          ...auth,
+          token: null
+        });
+      }
+
+      setLoading(false);
+    }
+
+    if (auth.token) {
+      getUser();
+    }
+  }, []);
+
+  console.log({ loading, auth });
 
   const handleRegister = async (params: RegisterParams): Promise<void | ErrorPayload> => {
     const result = await register(params);
@@ -63,6 +94,7 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     <AuthContext.Provider
       value={{
         ...auth,
+        loading,
         login: handleLogin,
         register: handleRegister
       }}

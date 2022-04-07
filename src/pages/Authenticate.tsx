@@ -10,12 +10,12 @@ import { Error } from '../ui/Error';
 import { AuthenticateLayout, ErrorWrapper, FormWrapper, ToggleWrapper } from '../ui/layouts/AuthenticateLayout';
 
 const Authenticate = () => {
+  const [userEmail, setUserEmail] = useState('');
   const [formVariant, setFormVariant] = useState<'register' | 'login'>('login');
   const [formError, setFormError] = useState<string | null>(null);
   const { user, login, register } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // TODO: Create a HOC to handle NON AUTH routes
   useEffect(() => {
     if (user) {
       navigate('/styleguide');
@@ -36,7 +36,7 @@ const Authenticate = () => {
     if (errorPayload) {
       setFormError(errorPayload.message);
     } else {
-      // TODO: Propagate email to login after registeras
+      setUserEmail(values.email);
       setFormVariant('login');
     }
   };
@@ -61,7 +61,11 @@ const Authenticate = () => {
           </ErrorWrapper>
         ) : null}
 
-        {formVariant === 'register' ? <RegisterForm onSubmit={handleRegister} /> : <LoginForm onSubmit={handleLogin} />}
+        {formVariant === 'register' ? (
+          <RegisterForm onSubmit={handleRegister} />
+        ) : (
+          <LoginForm onSubmit={handleLogin} userEmail={userEmail} />
+        )}
       </FormWrapper>
     </AuthenticateLayout>
   );

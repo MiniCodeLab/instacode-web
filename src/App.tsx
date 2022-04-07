@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import { AuthContextProvider } from './context/auth.context';
 import Authenticate from './pages/Authenticate';
+import Snippets from './pages/Snippets';
 import StyleGuide from './pages/StyleGuide';
 import { Error } from './ui/Error';
 import { Layout } from './ui/Layout';
@@ -39,7 +40,7 @@ function App() {
               path="snippets"
               element={
                 <ProtectedRoute>
-                  <h1>Snippets</h1>
+                  <Snippets />
                 </ProtectedRoute>
               }
             />
