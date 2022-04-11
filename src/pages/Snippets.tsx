@@ -20,16 +20,16 @@ const Snippets = () => {
           <Snippet key={snippet._id}>
             <CodeBlock language={snippet.language} code={snippet.code} />
 
-            <h3>
-              {snippet.title} - @{snippet.author.username}
-            </h3>
+            <h3>{snippet.title}</h3>
+
+            <h4>@{snippet.author.username}</h4>
+
+            <p>{snippet.description}</p>
 
             <TagGroup>
               {/* TODO: Implementar tags desde el backend */}
               <Tag>{snippet.language}</Tag>
             </TagGroup>
-
-            <p>{snippet.description}</p>
           </Snippet>
         ))}
       </SnippetsGroup>
