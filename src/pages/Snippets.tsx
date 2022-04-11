@@ -1,9 +1,16 @@
+import { useContext, useEffect } from 'react';
 import CodeBlock from '../components/CodeBlock';
-import { snippets } from '../mocks/snippets';
+import { SnippetContext } from '../context/snippet.context';
 import { Snippet, SnippetsGroup } from '../ui/Snippet';
 import { Tag, TagGroup } from '../ui/Tag';
 
 const Snippets = () => {
+  const { getSnippets, snippets } = useContext(SnippetContext);
+
+  useEffect(() => {
+    getSnippets();
+  }, []);
+
   return (
     <div>
       <h1>Snippets</h1>
@@ -11,7 +18,7 @@ const Snippets = () => {
       <SnippetsGroup>
         {snippets.map((snippet) => (
           <Snippet key={snippet._id}>
-            <CodeBlock code={snippet.code} />
+            <CodeBlock language={snippet.language} code={snippet.code} />
 
             <h3>
               {snippet.title} - @{snippet.author.username}
@@ -19,9 +26,7 @@ const Snippets = () => {
 
             <TagGroup>
               {/* TODO: Implementar tags desde el backend */}
-              {snippet.tags.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
+              <Tag>{snippet.language}</Tag>
             </TagGroup>
 
             <p>{snippet.description}</p>

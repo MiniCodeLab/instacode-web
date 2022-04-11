@@ -4,13 +4,16 @@ import { Code } from '../ui/Snippet';
 
 export type Props = {
   code: string;
+  language: string;
 };
 
-const CodeBlock = ({ code }: Props) => {
+const defaultCode = `console.log('Hola MiniCoders! ✨⚡')`;
+
+const CodeBlock = ({ code, language }: Props) => {
   return (
     <Code>
-      <SyntaxHighlighter language="jsx" style={tomorrow}>
-        {code}
+      <SyntaxHighlighter language={language || 'javascript'} style={tomorrow}>
+        {code || defaultCode}
       </SyntaxHighlighter>
     </Code>
   );

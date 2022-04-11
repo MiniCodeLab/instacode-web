@@ -60,8 +60,6 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  console.log({ loading, auth });
-
   const handleRegister = async (params: RegisterParams): Promise<void | ErrorPayload> => {
     const result = await register(params);
 

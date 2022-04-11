@@ -10,12 +10,20 @@ export const Snippet = styled.div`
   max-width: var(--snippet-width);
   padding: var(--padding-s);
   width: 100%;
+
+  > div:first-of-type {
+    max-width: unset;
+  }
 `;
 
 export const Code = styled.div`
   background-color: var(--dark);
   border-radius: var(--border-radius);
   border: 4px solid var(--green);
+  max-width: var(--input-width);
+  max-height: calc(var(--input-width) / 1.5);
+  overflow-y: scroll;
+  width: 100%;
 
   > pre {
     background-color: transparent !important;

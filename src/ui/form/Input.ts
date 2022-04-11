@@ -24,6 +24,12 @@ export const Input = styled.input<{ hasError?: boolean }>`
   ${({ hasError }) => (hasError ? errorInput : '')}
 `;
 
+export const TextArea = styled.textarea<{ hasError?: boolean }>`
+  ${sharedCss}
+  font-family: var(--roboto);
+  ${({ hasError }) => (hasError ? errorInput : '')}
+`;
+
 export const Select = styled.select<{ hasError?: boolean }>`
   ${sharedCss}
   ${({ hasError }) => (hasError ? errorInput : '')}

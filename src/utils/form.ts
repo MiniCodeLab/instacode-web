@@ -2,6 +2,14 @@ import { RegisterOptions } from 'react-hook-form';
 
 export const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-.]).{8,}$/;
 
+export const requiredValidation: RegisterOptions = {
+  required: {
+    value: true,
+    message: 'Este campo es requerido'
+  }
+};
+
+// TODO: On refactor remove these two
 export const usernameValidations: RegisterOptions = {
   required: {
     value: true,

@@ -129,6 +129,7 @@ body {
 }
 
 :root {
+  --roboto: 'Roboto', sans-serif;
   --green: #2cb67d;
   --purple: #7f5af0;
   --dark: #16161a;
@@ -168,6 +169,7 @@ h3 {
 
 h4,
 input,
+textarea,
 select {
   font-size: 1rem;
 }

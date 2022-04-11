@@ -69,10 +69,6 @@
 
 ---
 
-- [] Refactor Formularios
-  - [] Componetizar los inputs de forma más genérica
-  - [] HOC para que los users logeados no entren en Authenticate
-  - [] Controlar los errores generales del form
 - [x] Propagar email de registro a login
 - [x] Cargar datos de usuario al cargar la aplicación
 - [x] Crear las vistas de las rutas protegidas
@@ -82,11 +78,27 @@
 ---
 
 - Snippets:
-  - [] Conectarse con la API para traer snippets
-  - [] Añadir paginación **BONUS**
-  - [] Formulario para crear snippets
-  - [] Filtro por tags
-  - [] Cargar los tags desde la API
+  - [x] Conectarse con la API para traer snippets
+  - [x] Formulario para crear snippets
 
 ---
 
+## Refactors pendientes:
+
+- [] Refactor Formularios
+
+  - [] Componetizar los inputs de forma más genérica
+  - [] HOC para que los users logeados no entren en Authenticate
+  - [] Controlar los errores generales del form
+
+- Snippets
+
+  - [] Añadir paginación
+  - [] Filtro por lenguaje
+  - [] Añadir toast para errores
+
+- [] General
+
+  - [] Crear la navbar con botón de logout
+  - [] Despliegue a prod en Vercel
+  - [] Refactor general del backend
