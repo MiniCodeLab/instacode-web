@@ -85,20 +85,23 @@
 
 ## Refactors pendientes:
 
-- [] Refactor Formularios
+- [X] Snippets 🎉
 
-  - [] Componetizar los inputs de forma más genérica
-  - [] HOC para que los users logeados no entren en Authenticate
-  - [] Controlar los errores generales del form
-
-- Snippets
-
-  - [] Añadir paginación
-  - [] Filtro por lenguaje
-  - [] Añadir toast para errores
+  - [X] Filtro por lenguaje
+  - [X] Añadir toast para errores - `npm install --save react-toastify`
+  - [X] Añadir paginación
+  - [X] Scroll para snippets
 
 - [] General
 
   - [] Crear la navbar con botón de logout
   - [] Despliegue a prod en Vercel
+---
+  - [X][] Añadir tests con RTL
   - [] Refactor general del backend
+
+- [] Refactor Formularios
+
+  - [] Componetizar los inputs de forma más genérica
+  - [] HOC para que los users logeados no entren en Authenticate
+  - [] Controlar los errores generales del form

@@ -114,6 +114,26 @@ b {
   font-weight: bold;
 }
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  background: var(--dark);
+}
+
+::-webkit-scrollbar-thumb {
+  border-bottom-left-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+  background: var(--paragraph);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--paragraph);
+}
+
 * {
   box-sizing: border-box;
 }

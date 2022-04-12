@@ -6,27 +6,26 @@ import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 import { AuthContext } from '../context/auth.context';
 import { Button } from '../ui/Button';
-import { Error } from '../ui/Error';
-import { AuthenticateLayout, ErrorWrapper, FormWrapper, ToggleWrapper } from '../ui/layouts/AuthenticateLayout';
+import { AuthenticateLayout, FormWrapper, ToggleWrapper } from '../ui/layouts/AuthenticateLayout';
+import { setErrorToast } from '../utils/toasts';
 
 const Authenticate = () => {
   const [userEmail, setUserEmail] = useState('');
   const [formVariant, setFormVariant] = useState<'register' | 'login'>('login');
-  const [formError, setFormError] = useState<string | null>(null);
-  const { user, login, register } = useContext(AuthContext);
+  const { authenticated, login, register } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
+    if (authenticated) {
       navigate('/snippets');
     }
-  }, [user]);
+  }, [authenticated]);
 
   const handleLogin = async (values: LoginParams) => {
     const errorPayload = await login(values);
 
     if (errorPayload) {
-      setFormError(errorPayload.message);
+      setErrorToast(errorPayload.message);
     }
   };
 
@@ -34,7 +33,7 @@ const Authenticate = () => {
     const errorPayload = await register(values);
 
     if (errorPayload) {
-      setFormError(errorPayload.message);
+      setErrorToast(errorPayload.message);
     } else {
       setUserEmail(values.email);
       setFormVariant('login');
@@ -54,12 +53,6 @@ const Authenticate = () => {
             Iniciar Sesión
           </Button>
         </ToggleWrapper>
-
-        {formError ? (
-          <ErrorWrapper>
-            <Error>{formError}</Error>
-          </ErrorWrapper>
-        ) : null}
 
         {formVariant === 'register' ? (
           <RegisterForm onSubmit={handleRegister} />

@@ -1,40 +1,45 @@
-import { useContext, useEffect } from 'react';
-import CodeBlock from '../components/CodeBlock';
+import styled from '@emotion/styled';
+import { useContext, useEffect, useState } from 'react';
+import SnippetList from '../components/SnippetList';
+import { SUPPORTED_LANGUAGES } from '../constants/supported-languages';
 import { SnippetContext } from '../context/snippet.context';
-import { Snippet, SnippetsGroup } from '../ui/Snippet';
-import { Tag, TagGroup } from '../ui/Tag';
+import { Label } from '../ui/form/Form';
+import { Select } from '../ui/form/Input';
+import { getFilteredSnippets } from '../utils/snippets';
 
 const Snippets = () => {
+  const [filter, setFilter] = useState('');
   const { getSnippets, snippets } = useContext(SnippetContext);
 
   useEffect(() => {
     getSnippets();
   }, []);
 
+  const filteredSnippets = getFilteredSnippets(snippets, filter);
+
   return (
     <div>
       <h1>Snippets</h1>
 
-      <SnippetsGroup>
-        {snippets.map((snippet) => (
-          <Snippet key={snippet._id}>
-            <CodeBlock language={snippet.language} code={snippet.code} />
+      <SnippetListWrapper>
+        <Label>
+          <Select value={filter} onChange={(e) => setFilter(e.target.value)}>
+            <option value="">Filtrar por lenguaje 🔍</option>
 
-            <h3>{snippet.title}</h3>
+            {SUPPORTED_LANGUAGES.map((language) => (
+              <option key={language} value={language}>
+                {language}
+              </option>
+            ))}
+          </Select>
+        </Label>
 
-            <h4>@{snippet.author.username}</h4>
-
-            <p>{snippet.description}</p>
-
-            <TagGroup>
-              {/* TODO: Implementar tags desde el backend */}
-              <Tag>{snippet.language}</Tag>
-            </TagGroup>
-          </Snippet>
-        ))}
-      </SnippetsGroup>
+        <SnippetList snippets={filteredSnippets} />
+      </SnippetListWrapper>
     </div>
   );
 };
+
+const SnippetListWrapper = styled.div``;
 
 export default Snippets;

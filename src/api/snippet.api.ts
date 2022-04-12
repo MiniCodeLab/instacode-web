@@ -32,16 +32,25 @@ export const create = async (
   }
 };
 
+export type GetPaginatedPayload = {
+  codes: Snippet[];
+  nextPage?: number;
+};
+
 export const getPaginated = async (
   axiosInstance: AxiosInstance,
   params: { page: number }
-): Promise<ResponsePayload<Snippet[]> | ErrorPayload> => {
+): Promise<ResponsePayload<GetPaginatedPayload> | ErrorPayload> => {
   try {
-    const response = await axiosInstance.get<{ data: { codes: Snippet[] } }>(`code?page=${params.page}`);
-    console.log(response);
+    const response = await axiosInstance.get<{ data: GetPaginatedPayload }>(`code?page=${params.page}`);
+
+    const { codes, nextPage } = response.data.data;
     return {
       status: response.status,
-      data: response.data.data.codes
+      data: {
+        codes,
+        nextPage
+      }
     };
   } catch (error) {
     const { status, data } = (error as AxiosError).response as ErrorResponse;

@@ -5,10 +5,19 @@ export type Snippet = {
   language: string;
   description: string;
   author: {
-    id: string;
+    _id: string;
     username: string;
+    email: string;
+    password: string;
+    emoji: string;
+    codes: string[];
+    favCodes: string[];
+    createdAt: string;
+    updatedAt: string;
   };
-  // likes: [];
+  likes: string[];
+  createdAt: string;
+  updatedAt: string;
 };
 
-export type SnippetFormValues = Omit<Snippet, 'author' | '_id'>;
+export type SnippetFormValues = Omit<Snippet, 'author' | '_id' | 'createdAt' | 'likes' | 'updatedAt'>;
