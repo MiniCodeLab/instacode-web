@@ -62,7 +62,7 @@ const StyleGuide = () => {
         <h2>Snippet</h2>
 
         <Snippet>
-          <CodeBlock code="const hello = 'world';" />
+          <CodeBlock code="const hello = 'world';" language="javascript" />
 
           <h3>Ejemplo de useRef - @minicodelab</h3>
 
