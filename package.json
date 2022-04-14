@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "cp:public": "cp -r public dist/",
+    "build": "tsc && vite build && npm run cp:public",
     "preview": "vite preview",
     "test": "jest",
     "prepare": "husky install"

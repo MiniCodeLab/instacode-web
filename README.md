@@ -93,12 +93,12 @@
   - [x] Scroll para snippets
 
 - [] General
-
+- 
   - [x] Crear la navbar con botón de logout
   - [X] Vista de crear Snippet
   - [X] Vista de edición de perfil
   - [] Refactor general de estilos
-  - [] Despliegue a prod en Vercel
+  - [X] Despliegue a prod en Vercel
 
 ---
 
@@ -110,3 +110,11 @@
   - [] Componetizar los inputs de forma más genérica
   - [] HOC para que los users logeados no entren en Authenticate
   - [] Controlar los errores generales del form
+
+---
+
+- [] Cuando creamos snippet, redirigir a /snippets?mode=owner
+- [] Añadir emoji a la navbar
+- [] Crear edición de perfil/contraseña - BE & FE
+- [] Arreglar recarga en cualquier ruta del despliegue
+- [] Maquetar snippets para hacer un masonry
