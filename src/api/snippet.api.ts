@@ -32,6 +32,27 @@ export const create = async (
   }
 };
 
+export const edit = async (
+  axiosInstance: AxiosInstance,
+  params: Snippet
+): Promise<ResponsePayload<Snippet> | ErrorPayload> => {
+  try {
+    const response = await axiosInstance.patch<Snippet>(`code/${params._id}`, params);
+
+    return {
+      status: response.status,
+      data: response.data
+    };
+  } catch (error) {
+    const { status, data } = (error as AxiosError).response as ErrorResponse;
+
+    return {
+      status,
+      message: data
+    } as ErrorPayload;
+  }
+};
+
 export type GetPaginatedPayload = {
   codes: Snippet[];
   nextPage?: number;
@@ -50,6 +71,29 @@ export const getPaginated = async (
       data: {
         codes,
         nextPage
+      }
+    };
+  } catch (error) {
+    const { status, data } = (error as AxiosError).response as ErrorResponse;
+
+    return {
+      status,
+      message: data
+    } as ErrorPayload;
+  }
+};
+
+export const loadOwnSnippets = async (
+  axiosInstance: AxiosInstance
+): Promise<ResponsePayload<GetPaginatedPayload> | ErrorPayload> => {
+  try {
+    const response = await axiosInstance.get<{ data: GetPaginatedPayload }>('code/user');
+
+    const { codes } = response.data.data;
+    return {
+      status: response.status,
+      data: {
+        codes
       }
     };
   } catch (error) {

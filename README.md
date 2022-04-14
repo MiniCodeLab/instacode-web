@@ -85,20 +85,25 @@
 
 ## Refactors pendientes:
 
-- [X] Snippets 🎉
+- [x] Snippets 🎉
 
-  - [X] Filtro por lenguaje
-  - [X] Añadir toast para errores - `npm install --save react-toastify`
-  - [X] Añadir paginación
-  - [X] Scroll para snippets
+  - [x] Filtro por lenguaje
+  - [x] Añadir toast para errores - `npm install --save react-toastify`
+  - [x] Añadir paginación
+  - [x] Scroll para snippets
 
 - [] General
 
-  - [] Crear la navbar con botón de logout
+  - [x] Crear la navbar con botón de logout
+  - [X] Vista de crear Snippet
+  - [X] Vista de edición de perfil
+  - [] Refactor general de estilos
   - [] Despliegue a prod en Vercel
+
 ---
-  - [X][] Añadir tests con RTL
-  - [] Refactor general del backend
+
+- [X][] Añadir tests con RTL
+- [] Refactor general del backend
 
 - [] Refactor Formularios
 

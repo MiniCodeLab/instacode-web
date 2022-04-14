@@ -14,7 +14,7 @@ import { Layout } from './ui/Layout';
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Layout>
         <AuthContextProvider>
           <SnippetContextProvider>
@@ -22,48 +22,57 @@ function App() {
 
             <Navbar />
 
-            <BrowserRouter>
-              <Routes>
-                <Route index element={<Authenticate />} />
+            <Routes>
+              <Route index element={<Authenticate />} />
 
-                <Route path="edit">
-                  <Route
-                    path="snippet"
-                    element={
-                      <ProtectedRoute>
-                        <SnippetFormPage />
-                      </ProtectedRoute>
-                    }
-                  />
-                  <Route
-                    path="profile"
-                    element={
-                      <ProtectedRoute>
-                        <h1>Edit Profile</h1>
-                      </ProtectedRoute>
-                    }
-                  />
-                </Route>
-
+              <Route path="create">
                 <Route
-                  path="snippets"
+                  path="snippet"
                   element={
                     <ProtectedRoute>
-                      <Snippets />
+                      <SnippetFormPage />
                     </ProtectedRoute>
                   }
                 />
+              </Route>
 
-                <Route path="styleguide" element={<StyleGuide />} />
-                <Route path="*" element={<Error size="xl">404 | No encontrado</Error>} />
-              </Routes>
-            </BrowserRouter>
+              <Route path="edit">
+                <Route
+                  path="snippet/:id"
+                  element={
+                    <ProtectedRoute>
+                      <SnippetFormPage isEdit />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path="profile"
+                  element={
+                    <ProtectedRoute>
+                      <h1>Edit Profile</h1>
+                    </ProtectedRoute>
+                  }
+                />
+              </Route>
+
+              <Route
+                path="snippets"
+                element={
+                  <ProtectedRoute>
+                    <Snippets />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route path="styleguide" element={<StyleGuide />} />
+              <Route path="*" element={<Error size="xl">404 | No encontrado</Error>} />
+            </Routes>
           </SnippetContextProvider>
         </AuthContextProvider>
       </Layout>
 
       <ToastContainer theme="colored" />
-    </>
+    </BrowserRouter>
   );
 }
 

@@ -38,3 +38,19 @@ export const SnippetsGroup = styled.div`
   gap: var(--padding-m);
   max-width: calc(2 * calc(var(--snippet-width) + var(--padding-m)));
 `;
+
+export const EditableBlockWrapper = styled.div`
+  width: 100%;
+  position: relative;
+
+  > div:first-of-type {
+    max-width: unset;
+  }
+
+  > a {
+    position: absolute;
+    top: var(--padding-s);
+    right: var(--padding-s);
+    font-size: 1rem;
+  }
+`;

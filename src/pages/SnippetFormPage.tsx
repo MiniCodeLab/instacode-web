@@ -1,12 +1,19 @@
 import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import SnippetForm, { SnippetParams } from '../components/SnippetForm';
 import { SnippetContext } from '../context/snippet.context';
+import { Snippet } from '../types/snippet.types';
 import { setErrorToast, setSuccessToast } from '../utils/toasts';
 
-const SnippetFormPage = () => {
-  const { createSnippet } = useContext(SnippetContext);
+export type Props = {
+  isEdit?: boolean;
+};
+
+const SnippetFormPage = ({ isEdit = false }: Props) => {
+  const { createSnippet, editSnippet, findOwnSnippetById } = useContext(SnippetContext);
   const navigate = useNavigate();
+  const { id: editSnippetId } = useParams();
+  const defaultSnippet = findOwnSnippetById(editSnippetId as string);
 
   const submitNewSnippet = async (values: SnippetParams) => {
     createSnippet(values).then((status: boolean) => {
@@ -19,11 +26,29 @@ const SnippetFormPage = () => {
     });
   };
 
+  const submitsnippetToEdit = async (values: SnippetParams) => {
+    editSnippet({
+      ...defaultSnippet,
+      ...values
+    } as Snippet).then((status: boolean) => {
+      if (status) {
+        setSuccessToast('Snippet editado con éxito');
+        navigate('/snippets?mode=owner');
+      } else {
+        setErrorToast('Ha ocurrido un error al editar el snippet');
+      }
+    });
+  };
+
+  if (isEdit && !defaultSnippet) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <div>
-      <h1>Crea un nuevo snippet</h1>
+      <h1>{isEdit ? 'Edita tu snippet' : 'Crea un nuevo snippet'}</h1>
 
-      <SnippetForm onSubmit={submitNewSnippet} />
+      <SnippetForm onSubmit={isEdit ? submitsnippetToEdit : submitNewSnippet} initialValues={defaultSnippet} />
     </div>
   );
 };

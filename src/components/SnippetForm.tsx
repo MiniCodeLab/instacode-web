@@ -1,5 +1,8 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { SUPPORTED_LANGUAGES } from '../constants/supported-languages';
+import { Snippet } from '../types/snippet.types';
 import { Button } from '../ui/Button';
 import { Error } from '../ui/Error';
 import { Form, Label } from '../ui/form/Form';
@@ -16,22 +19,33 @@ export type SnippetParams = {
 
 export type Props = {
   onSubmit: (values: SnippetParams) => Promise<void>;
+  initialValues: Snippet | null;
 };
 
-const SnippetForm = ({ onSubmit }: Props) => {
+const SnippetForm = ({ onSubmit, initialValues }: Props) => {
+  const { id: editSnippetId } = useParams();
+  const defaultValues = {
+    title: initialValues?.title || '',
+    code: initialValues?.code || '',
+    language: initialValues?.language || '',
+    description: initialValues?.description || ''
+  };
+
   const {
     handleSubmit,
     register,
     control,
+    reset,
     formState: { errors }
   } = useForm({
-    defaultValues: {
-      title: '',
-      code: '',
-      language: '',
-      description: ''
-    }
+    defaultValues
   });
+
+  useEffect(() => {
+    if (!editSnippetId) {
+      reset(defaultValues);
+    }
+  }, [editSnippetId]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
