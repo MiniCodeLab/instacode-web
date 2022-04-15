@@ -1,11 +1,16 @@
 import styled from '@emotion/styled';
+import { tabletUp } from '../breakpoints';
 
 export const AuthenticateLayout = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 4rem;
-  padding-top: 6rem;
+  gap: var(--padding-m);
+  padding-top: var(--padding-m);
+
+  ${tabletUp} {
+    padding-top: calc(4 * var(--padding-m));
+  }
 `;
 
 export const FormWrapper = styled.div`

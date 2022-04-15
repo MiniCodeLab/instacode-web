@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
 import { SUPPORTED_LANGUAGES } from '../constants/supported-languages';
 import { Snippet } from '../types/snippet.types';
 import { Button } from '../ui/Button';
-import { Error } from '../ui/Error';
-import { Form, Label } from '../ui/form/Form';
+import { Form } from '../ui/form/Form';
 import { Input, Select, TextArea } from '../ui/form/Input';
 import { requiredValidation } from '../utils/form';
 import FormCodeBlock, { Props as FormCodeBlockProps } from './FormCodeBlock';
+import FormField from './FormField';
 
 export type SnippetParams = {
   title: string;
@@ -20,10 +19,10 @@ export type SnippetParams = {
 export type Props = {
   onSubmit: (values: SnippetParams) => Promise<void>;
   initialValues: Snippet | null;
+  isEdit?: boolean;
 };
 
-const SnippetForm = ({ onSubmit, initialValues }: Props) => {
-  const { id: editSnippetId } = useParams();
+const SnippetForm = ({ onSubmit, initialValues, isEdit = false }: Props) => {
   const defaultValues = {
     title: initialValues?.title || '',
     code: initialValues?.code || '',
@@ -41,21 +40,20 @@ const SnippetForm = ({ onSubmit, initialValues }: Props) => {
     defaultValues
   });
 
+  // When toggling between edit/create forms, reset the values to prevent ref values issues
   useEffect(() => {
-    if (!editSnippetId) {
+    if (!isEdit) {
       reset(defaultValues);
     }
-  }, [editSnippetId]);
+  }, [isEdit]);
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Label>
+      <FormField error={errors.title?.message}>
         <Input hasError={!!errors.title} type="text" placeholder="Título" {...register('title', requiredValidation)} />
+      </FormField>
 
-        {errors.title ? <Error>{errors.title.message}</Error> : null}
-      </Label>
-
-      <Label>
+      <FormField error={errors.language?.message}>
         <Select hasError={!!errors.language} {...register('language', requiredValidation)} defaultValue="">
           <option value="">Lenguaje de código</option>
 
@@ -65,34 +63,28 @@ const SnippetForm = ({ onSubmit, initialValues }: Props) => {
             </option>
           ))}
         </Select>
+      </FormField>
 
-        {errors.language ? <Error>{errors.language.message}</Error> : null}
-      </Label>
-
-      <Label>
+      <FormField error={errors.code?.message}>
         <TextArea
           rows={10}
           hasError={!!errors.code}
           placeholder="Escribe tu código!"
           {...register('code', requiredValidation)}
         />
-
-        {errors.code ? <Error>{errors.code.message}</Error> : null}
-      </Label>
+      </FormField>
 
       <FormCodeBlock control={control as unknown as FormCodeBlockProps['control']} />
 
-      <Label>
+      <FormField error={errors.description?.message}>
         <TextArea
           hasError={!!errors.description}
           placeholder="Describe tu snippet"
           {...register('description', requiredValidation)}
         />
+      </FormField>
 
-        {errors.description ? <Error>{errors.description.message}</Error> : null}
-      </Label>
-
-      <Button type="submit">Entrar</Button>
+      <Button type="submit">{isEdit ? 'Editar snippet' : 'Crear snippet'}</Button>
     </Form>
   );
 };

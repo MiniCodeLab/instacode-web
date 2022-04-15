@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoginParams, RegisterParams } from '../api/auth.api';
-import Image from '../components/Image';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 import { AuthContext } from '../context/auth.context';
@@ -42,7 +41,7 @@ const Authenticate = () => {
 
   return (
     <AuthenticateLayout>
-      <Image src="/logo-instacode.png" alt="logo-instacode" />
+      <img src="/logo-instacode-xl.png" alt="logo-instacode" />
 
       <FormWrapper>
         <ToggleWrapper>

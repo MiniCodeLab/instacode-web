@@ -1,12 +1,13 @@
-import styled from '@emotion/styled';
 import { useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import SnippetList from '../components/SnippetList';
 import { SUPPORTED_LANGUAGES } from '../constants/supported-languages';
 import { SnippetContext } from '../context/snippet.context';
 import { Button } from '../ui/Button';
+import { SnippetFilterWrapper } from '../ui/Snippet';
 import { Label } from '../ui/form/Form';
 import { Select } from '../ui/form/Input';
+import { CommonLayout } from '../ui/layouts/CommonLayout';
 import { getFilteredSnippets } from '../utils/snippets';
 
 const Snippets = () => {
@@ -29,11 +30,9 @@ const Snippets = () => {
   const filteredSnippets = getFilteredSnippets(snippetsToShow, languageFilter);
 
   return (
-    <div>
-      <h1>Snippets</h1>
-
-      <SnippetListWrapper>
-        <div>
+    <CommonLayout>
+      <div>
+        <SnippetFilterWrapper>
           <Label>
             <Select value={languageFilter} onChange={(e) => setLanguageFilter(e.target.value)}>
               <option value="">Filtrar por lenguaje 🔍</option>
@@ -54,14 +53,12 @@ const Snippets = () => {
           >
             {viewAll ? 'Mis Snippets' : 'Ver todos'}
           </Button>
-        </div>
+        </SnippetFilterWrapper>
 
         <SnippetList snippets={filteredSnippets} isFilterApplied={!!languageFilter} />
-      </SnippetListWrapper>
-    </div>
+      </div>
+    </CommonLayout>
   );
 };
-
-const SnippetListWrapper = styled.div``;
 
 export default Snippets;

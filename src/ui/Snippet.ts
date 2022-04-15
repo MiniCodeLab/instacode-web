@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { tabletUp } from './breakpoints';
 
 export const Snippet = styled.div`
   background-color: var(--snippet);
@@ -34,8 +35,9 @@ export const SnippetsGroup = styled.div`
   align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   gap: var(--padding-m);
+  justify-content: center;
+  margin: 0 auto;
   max-width: calc(2 * calc(var(--snippet-width) + var(--padding-m)));
 `;
 
@@ -48,9 +50,29 @@ export const EditableBlockWrapper = styled.div`
   }
 
   > a {
-    position: absolute;
-    top: var(--padding-s);
-    right: var(--padding-s);
     font-size: 1rem;
+    position: absolute;
+    right: var(--padding-xs);
+    top: calc(1.5 * var(--padding-xs));
+
+    ${tabletUp} {
+      right: var(--padding-s);
+      top: var(--padding-s);
+    }
+  }
+`;
+
+export const SnippetFilterWrapper = styled.div`
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-s);
+  margin-bottom: var(--padding-s);
+
+  ${tabletUp} {
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: var(--padding-m);
   }
 `;
