@@ -2,27 +2,37 @@ import styled from '@emotion/styled';
 import { tabletUp } from './breakpoints';
 
 export const NavbarWrapper = styled.header`
-  align-items: center;
+  align-items: flex-start;
   display: flex;
-  flex-direction: column;
   gap: var(--padding-s);
+  justify-content: space-between;
   width: 100%;
+  margin: var(--padding-s) auto;
+  border-bottom: 1px solid var(--snippet);
+  padding-bottom: var(--padding-xs);
 
   ${tabletUp} {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: var(--padding-m) var(--padding-s);
+    margin-bottom: var(--padding-m);
   }
 `;
 
 export const LinksWrapper = styled.nav`
-  align-items: center;
-  align-self: flex-end;
+  align-items: flex-end;
   display: flex;
+  flex-direction: column;
   gap: var(--padding-s);
+  padding-top: var(--padding-xs);
+
+  > .logout {
+    display: none;
+  }
 
   ${tabletUp} {
-    align-self: unset;
+    align-items: center;
+    flex-direction: row;
+
+    > .logout {
+      display: block;
+    }
   }
 `;

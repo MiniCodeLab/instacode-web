@@ -4,7 +4,6 @@ import { AuthContext } from '../context/auth.context';
 import { Button } from '../ui/Button';
 import { InstaNavLink } from '../ui/InstaLink';
 import { NavbarWrapper, LinksWrapper } from '../ui/Navbar';
-import Image from './Image';
 
 const Navbar = () => {
   const { authenticated, logout } = useContext(AuthContext);
@@ -12,13 +11,14 @@ const Navbar = () => {
   return authenticated ? (
     <NavbarWrapper>
       <Link to="/">
-        <Image src="/logo-instacode.png" alt="logo-instacode" size="s" />
+        <img src="/logo-instacode.png" alt="logo instacode" />
       </Link>
 
       <LinksWrapper>
         <InstaNavLink to="/create/snippet">Crear Snippet</InstaNavLink>
+        <InstaNavLink to="/edit/profile">Editar Perfil</InstaNavLink>
 
-        <Button onClick={logout} variant="grey">
+        <Button className="logout" onClick={logout} variant="grey">
           Logout
         </Button>
       </LinksWrapper>
