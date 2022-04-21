@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import SnippetForm, { SnippetParams } from '../components/SnippetForm';
-import { SnippetContext } from '../context/snippet.context';
+import { SnippetContext } from '../context/snippet';
 import { Snippet } from '../types/snippet.types';
 import { CommonLayout } from '../ui/layouts/CommonLayout';
 import { setErrorToast, setSuccessToast } from '../utils/toasts';

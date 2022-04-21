@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { SnippetContext } from '../context/snippet.context';
+import { SnippetContext } from '../context/snippet';
 import useDebounceFn from '../hooks/useDebounceFn';
 import useInfiniteScroll from '../hooks/useInfiniteScroll';
 import { Snippet as SnippetType } from '../types/snippet.types';

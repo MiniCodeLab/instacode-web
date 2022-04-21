@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import SnippetList from '../components/SnippetList';
 import { SUPPORTED_LANGUAGES } from '../constants/supported-languages';
-import { SnippetContext } from '../context/snippet.context';
+import { SnippetContext } from '../context/snippet';
 import { Button } from '../ui/Button';
 import { SnippetFilterWrapper } from '../ui/Snippet';
 import { Label } from '../ui/form/Form';

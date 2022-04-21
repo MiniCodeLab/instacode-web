@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { LoginParams } from '../api/auth.api';
+import { LoginParams } from '../context/auth/api';
 import { Button } from '../ui/Button';
 import { Error } from '../ui/Error';
 import { Form, Label } from '../ui/form/Form';

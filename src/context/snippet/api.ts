@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosInstance } from 'axios';
-import { ErrorPayload, ErrorResponse, ResponsePayload } from '../types/request.types';
-import { Snippet, SnippetFormValues } from '../types/snippet.types';
+import { ErrorPayload, ErrorResponse, ResponsePayload } from '../../types/request.types';
+import { Snippet, SnippetFormValues } from '../../types/snippet.types';
 
 export const getSnippetAxios = (token: string): AxiosInstance =>
   axios.create({

@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
-import { ErrorPayload, ErrorResponse, ResponsePayload } from '../types/request.types';
-import { User, UserData } from '../types/user.types';
+import { ErrorPayload, ErrorResponse, ResponsePayload } from '../../types/request.types';
+import { User, UserData } from '../../types/user.types';
 
 export type LoginParams = {
   email: string;

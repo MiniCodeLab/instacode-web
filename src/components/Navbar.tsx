@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/auth.context';
+import { AuthContext } from '../context/auth';
 import { Button } from '../ui/Button';
 import { InstaNavLink } from '../ui/InstaLink';
 import { NavbarWrapper, LinksWrapper } from '../ui/Navbar';

@@ -118,3 +118,13 @@
 - [] Crear edición de perfil/contraseña - BE & FE
 - [] Arreglar recarga en cualquier ruta del despliegue
 - [] Maquetar snippets para hacer un masonry
+
+
+
+----
+
+- Contextos => Custom hooks
+  - [x] Auth Context
+  - [x] Snippet Context
+- Servicios => Abstraer funciones comunes
+- Unit Tests => Componentes y funciones
