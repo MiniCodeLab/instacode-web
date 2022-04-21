@@ -18,7 +18,7 @@ const Navbar = () => {
         <InstaNavLink to="/create/snippet">Crear Snippet</InstaNavLink>
         <InstaNavLink to="/edit/profile">Editar Perfil</InstaNavLink>
 
-        <Button className="logout" onClick={logout} variant="grey">
+        <Button data-testid="logout" className="logout" onClick={logout} variant="grey">
           Logout
         </Button>
       </LinksWrapper>

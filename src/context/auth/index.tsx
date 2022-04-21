@@ -2,13 +2,15 @@ import { createContext, ReactNode, useEffect, useState } from 'react';
 import { AuthContextState } from './types';
 import useAuth, { initialState } from './useAuth';
 
-export const AuthContext = createContext<AuthContextState>({
+export const authContextInitialState = {
   ...initialState,
   loading: false,
   register: async () => {},
   login: async () => {},
   logout: () => {}
-});
+};
+
+export const AuthContext = createContext<AuthContextState>(authContextInitialState);
 
 export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
   const { auth, getUser, handleLogin, handleLogout, handleRegister } = useAuth();
