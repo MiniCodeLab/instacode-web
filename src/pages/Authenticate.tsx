@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LoginParams, RegisterParams } from '../api/auth.api';
+import { LoginParams, RegisterParams } from '../context/auth/api';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
-import { AuthContext } from '../context/auth.context';
+import { AuthContext } from '../context/auth';
 import { Button } from '../ui/Button';
 import { AuthenticateLayout, FormWrapper, ToggleWrapper } from '../ui/layouts/AuthenticateLayout';
 import { setErrorToast } from '../utils/toasts';

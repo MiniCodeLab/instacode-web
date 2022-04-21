@@ -93,12 +93,11 @@
   - [x] Scroll para snippets
 
 - [] General
-- 
-  - [x] Crear la navbar con botón de logout
-  - [X] Vista de crear Snippet
-  - [X] Vista de edición de perfil
+- - [x] Crear la navbar con botón de logout
+  - [x] Vista de crear Snippet
+  - [x] Vista de edición de perfil
   - [] Refactor general de estilos
-  - [X] Despliegue a prod en Vercel
+  - [x] Despliegue a prod en Vercel
 
 ---
 
@@ -118,3 +117,11 @@
 - [] Crear edición de perfil/contraseña - BE & FE
 - [] Arreglar recarga en cualquier ruta del despliegue
 - [] Maquetar snippets para hacer un masonry
+
+---
+
+- Contextos => Custom hooks
+  - [x] Auth Context
+  - [x] Snippet Context
+- [x] Servicios => Abstraer funciones comunes
+- [x] Unit Tests => Componentes y funciones

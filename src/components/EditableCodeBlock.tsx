@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { AuthContext } from '../context/auth.context';
+import { AuthContext } from '../context/auth';
 import { Snippet } from '../types/snippet.types';
 import { InstaLink } from '../ui/InstaLink';
 import { EditableBlockWrapper } from '../ui/Snippet';

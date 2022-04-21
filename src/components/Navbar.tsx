@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/auth.context';
+import { AuthContext } from '../context/auth';
 import { Button } from '../ui/Button';
 import { InstaNavLink } from '../ui/InstaLink';
 import { NavbarWrapper, LinksWrapper } from '../ui/Navbar';
@@ -18,7 +18,7 @@ const Navbar = () => {
         <InstaNavLink to="/create/snippet">Crear Snippet</InstaNavLink>
         <InstaNavLink to="/edit/profile">Editar Perfil</InstaNavLink>
 
-        <Button className="logout" onClick={logout} variant="grey">
+        <Button data-testid="logout" className="logout" onClick={logout} variant="grey">
           Logout
         </Button>
       </LinksWrapper>

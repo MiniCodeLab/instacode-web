@@ -1,6 +1,7 @@
-import axios, { AxiosError, AxiosInstance } from 'axios';
-import { ErrorPayload, ErrorResponse, ResponsePayload } from '../types/request.types';
-import { Snippet, SnippetFormValues } from '../types/snippet.types';
+import axios, { AxiosInstance } from 'axios';
+import { ErrorPayload, ResponsePayload } from '../../types/request.types';
+import { Snippet, SnippetFormValues } from '../../types/snippet.types';
+import { apiTryCatchHandler } from '../../utils/api';
 
 export const getSnippetAxios = (token: string): AxiosInstance =>
   axios.create({
@@ -14,44 +15,28 @@ export const getSnippetAxios = (token: string): AxiosInstance =>
 export const create = async (
   axiosInstance: AxiosInstance,
   params: SnippetFormValues
-): Promise<ResponsePayload<Snippet> | ErrorPayload> => {
-  try {
+): Promise<ResponsePayload<Snippet> | ErrorPayload> =>
+  apiTryCatchHandler(async () => {
     const response = await axiosInstance.post<Snippet>('code', params);
 
     return {
       status: response.status,
       data: response.data
     };
-  } catch (error) {
-    const { status, data } = (error as AxiosError).response as ErrorResponse;
-
-    return {
-      status,
-      message: data
-    } as ErrorPayload;
-  }
-};
+  });
 
 export const edit = async (
   axiosInstance: AxiosInstance,
   params: Snippet
-): Promise<ResponsePayload<Snippet> | ErrorPayload> => {
-  try {
+): Promise<ResponsePayload<Snippet> | ErrorPayload> =>
+  apiTryCatchHandler(async () => {
     const response = await axiosInstance.patch<Snippet>(`code/${params._id}`, params);
 
     return {
       status: response.status,
       data: response.data
     };
-  } catch (error) {
-    const { status, data } = (error as AxiosError).response as ErrorResponse;
-
-    return {
-      status,
-      message: data
-    } as ErrorPayload;
-  }
-};
+  });
 
 export type GetPaginatedPayload = {
   codes: Snippet[];
@@ -61,8 +46,8 @@ export type GetPaginatedPayload = {
 export const getPaginated = async (
   axiosInstance: AxiosInstance,
   params: { page: number }
-): Promise<ResponsePayload<GetPaginatedPayload> | ErrorPayload> => {
-  try {
+): Promise<ResponsePayload<GetPaginatedPayload> | ErrorPayload> =>
+  apiTryCatchHandler(async () => {
     const response = await axiosInstance.get<{ data: GetPaginatedPayload }>(`code?page=${params.page}`);
 
     const { codes, nextPage } = response.data.data;
@@ -73,20 +58,12 @@ export const getPaginated = async (
         nextPage
       }
     };
-  } catch (error) {
-    const { status, data } = (error as AxiosError).response as ErrorResponse;
-
-    return {
-      status,
-      message: data
-    } as ErrorPayload;
-  }
-};
+  });
 
 export const loadOwnSnippets = async (
   axiosInstance: AxiosInstance
-): Promise<ResponsePayload<GetPaginatedPayload> | ErrorPayload> => {
-  try {
+): Promise<ResponsePayload<GetPaginatedPayload> | ErrorPayload> =>
+  apiTryCatchHandler(async () => {
     const response = await axiosInstance.get<{ data: GetPaginatedPayload }>('code/user');
 
     const { codes } = response.data.data;
@@ -96,12 +73,4 @@ export const loadOwnSnippets = async (
         codes
       }
     };
-  } catch (error) {
-    const { status, data } = (error as AxiosError).response as ErrorResponse;
-
-    return {
-      status,
-      message: data
-    } as ErrorPayload;
-  }
-};
+  });
